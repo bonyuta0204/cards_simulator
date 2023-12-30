@@ -116,6 +116,10 @@ impl Hand {
     fn push(&mut self, card: Card) {
         self.0.push(card);
     }
+
+    pub fn len(&self) -> usize {
+        self.0.len()
+    }
 }
 
 impl Deck {
