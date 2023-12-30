@@ -19,7 +19,7 @@ enum Rank {
     Jack,
     Queen,
     King,
-    Joker
+    Joker,
 }
 #[derive(Clone, Copy, Debug)]
 enum Suite {
@@ -170,8 +170,8 @@ impl Deck {
 
         for (i, &card) in self.cards.iter().enumerate() {
             hands[i % num_hands as usize].push(card);
-    }
+        }
 
-    hands
+        hands
     }
 }

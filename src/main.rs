@@ -9,9 +9,7 @@ fn main() {
     let mut deck = Deck::new();
     let mut distribution: HashMap<usize, u32> = HashMap::new();
 
-
     for i in 0..TRIAL {
-
         deck.shuffle();
 
         let hands = deck.deal(NUM_HANDS);
@@ -21,7 +19,7 @@ fn main() {
             *distribution.entry(remaining_cards.len()).or_insert(0) += 1;
         }
     }
-   // Collect keys and sort them
+    // Collect keys and sort them
     let mut sorted_keys: Vec<_> = distribution.keys().cloned().collect();
     sorted_keys.sort();
 
@@ -33,7 +31,8 @@ fn main() {
         }
     }
 
-    let expectation = distribution.iter().fold(0.0, |acc, (&key, &value)| acc + (key as f64) * (value as f64) / (TRIAL as f64 * NUM_HANDS as f64));
+    let expectation = distribution.iter().fold(0.0, |acc, (&key, &value)| {
+        acc + (key as f64) * (value as f64) / (TRIAL as f64 * NUM_HANDS as f64)
+    });
     println!("Expectation: {}", expectation)
-
 }
