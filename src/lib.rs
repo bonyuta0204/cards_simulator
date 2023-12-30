@@ -19,6 +19,7 @@ enum Rank {
     Jack,
     Queen,
     King,
+    Joker
 }
 #[derive(Clone, Copy, Debug)]
 enum Suite {
@@ -48,10 +49,10 @@ impl Card {
         }
     }
 
-    fn rank(&self) -> Option<Rank> {
+    fn rank(&self) -> Rank {
         match self {
-            Card::Standard { rank, .. } => Some(*rank),
-            Card::Joker => None,
+            Card::Standard { rank, .. } => *rank,
+            Card::Joker => Rank::Joker,
         }
     }
 }
@@ -89,6 +90,7 @@ impl fmt::Display for Rank {
             Rank::Jack => "J",
             Rank::Queen => "Q",
             Rank::King => "K",
+            Rank::Joker => "",
         };
         write!(f, "{}", rank_symbol)
     }

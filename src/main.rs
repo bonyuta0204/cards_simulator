@@ -4,7 +4,7 @@ use cards_simulator::{babanuki::discard_pairs, Deck};
 
 fn main() {
     const TRIAL: u32 = 10000;
-    const NUM_HANDS: u32 = 5;
+    const NUM_HANDS: u32 = 2;
 
     let mut deck = Deck::new();
     let mut distribution: HashMap<usize, u32> = HashMap::new();

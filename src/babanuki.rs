@@ -10,17 +10,19 @@ pub fn discard_pairs(hand: &Hand) -> Hand {
 
     // Count the occurrences of each rank
     for card in cards {
-        if let Some(rank) = card.rank() {
-            *counts.entry(rank).or_insert(0) += 1;
+            counts.entry(card.rank()).or_insert(Vec::new()).push(card);
+    }
+
+    let mut remaining_cards = Vec::new();
+
+    for (key, cards) in counts {
+        if cards.len() %2 == 0 {
+        } else {
+
+            remaining_cards.push(*cards[0]);
         }
     }
 
-    // Discard cards that are part of a pair
-    Hand(cards.iter()
-        .filter(|&card| match card.rank() {
-            Some(rank) => counts[&rank] % 2 == 1,
-            None => true,
-        } )
-        .cloned()
-        .collect())
+    Hand(remaining_cards)
+
 }
